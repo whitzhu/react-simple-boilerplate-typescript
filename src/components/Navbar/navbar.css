@@ -1,5 +1,5 @@
 .navbar {
-  padding: 20px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: row nowrap;
   justify-content: space-between;
@@ -13,4 +13,11 @@
 .navbar-list {
   display: flex;
   flex-flow: row nowrap;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-item {
+  text-decoration: none;
+  color: inherit;
 }
