@@ -18,8 +18,6 @@ module.exports = {
   },
   rules: {
     "no-use-before-define": "off",
-    "react/jsx-filename-extension": "off",
-    "react/prop-types": "off",
     "comma-dangle": 2,
     quotes: ["error", "double"],
     semi: ["error", "always"]

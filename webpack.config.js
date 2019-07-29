@@ -21,7 +21,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      components: path.resolve(__dirname, "./src/components")
+    }
   },
   output: {
     path: DIST_DIR,
