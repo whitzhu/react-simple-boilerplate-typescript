@@ -1,0 +1,16 @@
+.navbar {
+  padding: 20px;
+  display: flex;
+  flex-direction: row nowrap;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.navbar-list {
+  display: flex;
+  flex-flow: row nowrap;
+}
