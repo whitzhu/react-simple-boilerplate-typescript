@@ -4,8 +4,9 @@ import "./homepage.css";
 const Homepage = () => (
   <div className="homepage page-container">
     <h1>React Boiler Plate 2019</h1>
-    <p>Typescript</p>
-    <p>Webpack-dev-server</p>
+    <p>typescript</p>
+    <p>webpack 4 / webpack-dev-server</p>
+    <p>react-router</p>
   </div>
 );
 
