@@ -4,6 +4,21 @@ const path = require("path");
 const app = express();
 const port = 5000;
 
+require("dotenv").config();
+
+if (process.env.NODE_ENV == "development") {
+  const webpackConfig = require("../webpack.config");
+  const webpack = require("webpack");
+  const compiler = webpack(webpackConfig);
+  app.use(
+    require("webpack-dev-middleware")(compiler, {
+      noInfo: true,
+      publicPath: webpackConfig.output.publicPath
+    })
+  );
+  app.use(require("webpack-hot-middleware")(compiler));
+}
+
 app.use(express.static("public"));
 
 app.get("*", (req, res) =>

@@ -1,9 +1,10 @@
+import { hot } from "react-hot-loader/root";
 import React, { Component } from "react";
 import AppRouter from "../AppRouter/AppRouter";
 
 import "../../styles/global-styles.css";
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <div>
@@ -12,3 +13,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default hot(App);

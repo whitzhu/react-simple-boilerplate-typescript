@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -9,14 +10,31 @@ const isProd = process.env.NODE_ENV == "production";
 
 module.exports = {
   mode: isProd ? "production" : "development",
-  entry: "./src/index.tsx",
+  entry: {
+    main: [
+      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+      "./src/index.tsx"
+    ]
+  },
   devtool: isProd ? false : "inline-source-map",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true,
+            babelrc: false,
+            presets: [
+              ["@babel/preset-env"],
+              "@babel/preset-typescript",
+              "@babel/preset-react"
+            ],
+            plugins: ["react-hot-loader/babel"]
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -54,12 +72,13 @@ module.exports = {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "./css/[name].css",
+      filename: "css/[name].css",
       ignoreOrder: false
     }),
     new OptimizeCSSAssetsPlugin({

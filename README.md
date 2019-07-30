@@ -8,27 +8,41 @@
 npm install
 ```
 
-### Run client dev
+### Development with Hot Module Replacement (HMR)
+
+Server and client will automatically restart when code is changed. Easily tweak react components in a running application.
 
 ```
-npm run dev
-```
 
-### Run client build for production
+npm run dev-server
 
 ```
+
+### Production
+
+Generate client code
+
+```
+
 npm run build
-```
-
-### Run server
 
 ```
+
+Start server
+
+```
+
 npm run server
+
 ```
 
 ## Built With
 
-- [React](https://facebook.github.io/react/) - Frontend Framework
+- [Preact](https://preactjs.com/) - Frontend Framework
 - [Webpack](https://webpack.github.io/) - Module Bundler
 - [Typescript](https://www.typescriptlang.org/) - Typing
 - [React Router](https://reacttraining.com/react-router/web/) - Routing
+
+```
+
+```
