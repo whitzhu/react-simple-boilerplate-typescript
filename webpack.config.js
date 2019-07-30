@@ -2,11 +2,12 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const DIST_DIR = path.join(__dirname, "/public");
+const isProd = process.env.NODE_ENV == "production";
 
 module.exports = {
+  mode: isProd ? "production" : "development",
   entry: "./src/index.tsx",
-  devtool: "inline-source-map",
-
+  devtool: isProd ? false : "inline-source-map",
   module: {
     rules: [
       {
