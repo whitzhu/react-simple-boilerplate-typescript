@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar/Navbar.tsx";
-import AppRouter from "../AppRouter/AppRouter.tsx";
+import AppRouter from "../AppRouter/AppRouter";
 
 import "../../styles/global-styles.css";
 
