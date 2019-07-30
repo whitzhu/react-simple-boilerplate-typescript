@@ -1,5 +1,8 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
 
 const DIST_DIR = path.join(__dirname, "/public");
 const isProd = process.env.NODE_ENV == "production";
@@ -17,7 +20,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: !isProd
+            }
+          },
+          "css-loader"
+        ]
       }
     ]
   },
@@ -39,10 +50,24 @@ module.exports = {
     compress: true,
     port: 8000
   },
+  optimization: {
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "./css/[name].css",
+      ignoreOrder: false
+    }),
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: require("cssnano"),
+      cssProcessorPluginOptions: {
+        preset: ["default", { discardComments: { removeAll: true } }]
+      },
+      canPrint: true
     })
   ]
 };
