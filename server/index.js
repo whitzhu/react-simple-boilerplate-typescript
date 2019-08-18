@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 5000;
@@ -20,6 +22,8 @@ if (process.env.NODE_ENV == "development") {
 }
 
 app.use(express.static("public"));
+app.use(bodyParser.json());
+app.use(cors());
 
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/index.html"))
